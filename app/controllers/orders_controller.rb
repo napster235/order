@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
     end
 
     def load_records
-      @orders = Order.all
+      @orders = Order.where(user_id: current_user)
     end
 
     def load_record

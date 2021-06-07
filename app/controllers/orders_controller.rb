@@ -24,8 +24,8 @@ class OrdersController < ApplicationController
   end
 
   def update
-    binding.pry
-    if @order.update_attributes(order_params)
+    # binding.pry
+    if @order.update(order_params)
       flash[:success] = "Order successfully updated"
       redirect_to orders_url
     else

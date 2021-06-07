@@ -102,6 +102,8 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.15.1)
+    font-ionicons-rails (2.0.1.6)
+      railties (>= 3.2, < 7.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
@@ -258,6 +260,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker!
+  font-ionicons-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)

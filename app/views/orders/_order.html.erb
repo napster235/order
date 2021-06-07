@@ -1,0 +1,15 @@
+<%= content_tag(:tr) do %>
+  <%= content_tag(:td) do %>
+    <%= order.order_number %>
+  <% end -%>
+
+  <%= content_tag(:td) do %>
+    <%= order.status if order.status %>
+  <% end -%>
+
+  <%= content_tag(:td) do %>
+    <%= link_to("Edit", edit_order_path(order)) %> |
+    <%= link_to("Delete", order_path(order), data: { confirm: "Are you sure you want to delete this order?
+"}, method: :delete) %>
+  <% end -%>
+<% end -%>

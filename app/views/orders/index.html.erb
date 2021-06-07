@@ -1,0 +1,35 @@
+<%= content_tag(:div, class: "row py-2") do %>
+  <%= content_tag(:div, class: "col align-self-end") do %>
+    <%= content_tag(:h2, "Orders") %>
+  <% end -%>
+<% end -%>
+
+<%= content_tag(:div, class: "row py-2") do %>
+  <%= content_tag(:div, class: "col") do %>
+    <%= link_to new_order_path do %>
+      <%= ion_icon "plus", text: "Add new order" %>
+    <% end -%>
+  <% end -%>
+<% end -%>
+
+<%= content_tag(:table, class: "table table-bordered table-hover") do %>
+  <%= content_tag(:thead) do %>
+    <%= content_tag(:tr) do %>
+      <%= content_tag(:th, scope: "col") do %>
+        <%= "Order name" %>
+      <% end -%>
+
+      <%= content_tag(:th, scope: "col") do %>
+        <%= "Status" %>
+      <% end -%>
+
+      <%= content_tag(:th, scope: "col") do %>
+        <%= "Actions" %>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+
+  <%= content_tag(:tbody) do %>
+    <%= render(partial: "order", collection: @orders) %>
+  <% end -%>
+<% end -%>

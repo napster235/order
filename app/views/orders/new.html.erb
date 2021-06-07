@@ -1,0 +1,4 @@
+<%= content_tag(:h2, "New order") %>
+<%= form_for(@order, url: orders_path(), method: :post) do |f| %>
+  <%= render(partial: "form", object: f) %>
+<% end -%>

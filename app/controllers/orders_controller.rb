@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :load_records, only: [:index]
+  include Pagy::Backend
+
   before_action :load_record, only: [:edit, :update, :destroy]
 
   def index
+    @q = Order.ransack(ransack_params)
+    @orders = @q.result.order("status ASC")
+    @pagy, @orders = pagy(Order.all.ransack(ransack_params).result, items: 10)
   end
 
   def new
@@ -12,10 +16,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      flash[:success] = "Order successfully saved"
+      flash[:notice] = "Order successfully saved"
       redirect_to orders_url
     else
-      flash[:error] = "Order could not be saved"
+      flash[:alert] = "Order could not be saved"
       render :new
     end
   end
@@ -24,21 +28,20 @@ class OrdersController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @order.update(order_params)
-      flash[:success] = "Order successfully updated"
+      flash[:notice] = "Order successfully updated"
       redirect_to orders_url
     else
-      flash[:error] = "Order could not be updated"
+      flash[:alert] = "Order could not be updated"
       render :edit
     end
   end
 
   def destroy
     if @order.destroy
-      flash[:success] = "Order was deleted"
+      flash[:notice] = "Order was deleted"
     else
-      flash[:error] = "Order was not deleted"
+      flash[:alert] = "Order was not deleted"
     end
     redirect_to orders_url
   end
@@ -49,12 +52,14 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:order_number, :user_id, :status)
     end
 
-    def load_records
-      @orders = Order.where(user_id: current_user)
-    end
-
     def load_record
       @order = Order.where(id: params[:id]).first
       redirect_to orders_url if @order.blank?
+    end
+
+    def ransack_params
+      (params[:q] || {}).merge(
+        { order_number_cont: params.dig(:q, :search_query).to_s }
+      )
     end
 end

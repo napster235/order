@@ -7,6 +7,12 @@
     <% end -%>
   <% end -%>
 
+  <%= content_tag(:div, nil, class: "col align-self-end") do %>
+    <%= form_tag(orders_path, method: :get, class: "align-self-end") do %>
+      <%= text_field_tag("q[search_query]", params.dig(:q, :search_query), class: "form-control", placeholder: "Search orders") %>
+    <% end -%>
+  <% end -%>
+
   <%= content_tag(:div, class: "row py-2") do %>
     <%= content_tag(:div, class: "col") do %>
       <%= link_to new_order_path do %>
@@ -19,11 +25,19 @@
     <%= content_tag(:thead) do %>
       <%= content_tag(:tr) do %>
         <%= content_tag(:th, scope: "col") do %>
-          <%= "Order name" %>
+          <%= sort_link(@q, :order_number) %>
         <% end -%>
 
         <%= content_tag(:th, scope: "col") do %>
-          <%= "Status" %>
+          <%= sort_link(@q, :status) %>
+        <% end -%>
+
+        <%= content_tag(:th, scope: "col") do %>
+          <%= sort_link(@q, :created_at) %>
+        <% end -%>
+
+        <%= content_tag(:th, scope: "col") do %>
+          <%= sort_link(@q, :updated_at) %>
         <% end -%>
 
         <%= content_tag(:th, scope: "col") do %>
@@ -31,9 +45,14 @@
         <% end -%>
       <% end -%>
     <% end -%>
+  
 
     <%= content_tag(:tbody) do %>
       <%= render(partial: "order", collection: @orders) %>
     <% end -%>
   <% end -%>
+<% end -%>
+
+<%= content_tag(:div, class: "d-flex justify-content-center") do %>
+  <%== pagy_nav(@pagy) %>
 <% end -%>

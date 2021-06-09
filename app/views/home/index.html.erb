@@ -1,6 +1,5 @@
 <% if current_user.blank? %>
   <% redirect_if_not_logged %>
 <% else %>
-  <%= content_tag(:h2, "Homepage") %>
-  <%= link_to("Check your orders", orders_path, class: "btn btn-primary") %>
+  <%= link_to("Check your orders", orders_path, class: "btn btn-primary btn-lg") %>
 <% end %>

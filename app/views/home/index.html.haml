@@ -1,0 +1,4 @@
+- if current_user.blank?
+  - redirect_if_not_logged
+- else
+  = link_to("Check your orders", orders_path, class: "btn btn-primary")

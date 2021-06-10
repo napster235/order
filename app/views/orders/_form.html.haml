@@ -1,0 +1,16 @@
+= content_tag("col-md-6") do
+  = content_tag("form-group") do
+    = form.label(:order_number, "Order Number")
+    = form.text_field(:order_number, class: "form-control")
+    = content_tag(:span, form.object.errors.full_messages_for(:order_number).join(".\n"), class: "text-danger")
+  = content_tag("form-group") do
+    = form.label(:user_id, "User")
+    = form.collection_select(:user_id, User.all, :id, :email, { prompt: true }, class: "form-control")
+    = content_tag(:span, form.object.errors.full_messages_for(:user_id).join(".\n"), class: "text-danger")
+  = content_tag("form-group") do
+    = form.label(:status, "Status")
+    = form.collection_select(:status, Order.statuses.map { |a| [a.first, a.first] }, :first, :second, include_blank: true, class: "form-control")
+    = content_tag(:span, form.object.errors.full_messages_for(:status).join(".\n"), class: "text-danger")
+  = content_tag("form-group") do
+    = form.submit("Save", data: { "disable-with" => "Saving..." }, class: "btn btn-primary")
+    = link_to("Cancel", orders_path(), class: "btn btn-link")

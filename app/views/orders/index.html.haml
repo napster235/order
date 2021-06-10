@@ -1,0 +1,31 @@
+= content_tag(:div, class: "jumbotron") do
+  - if current_user.blank?
+    - redirect_if_not_logged
+  - else
+    = content_tag(:div, class: "row py-2") do
+      = content_tag(:div, class: "col align-self-end") do
+        = content_tag(:h2, "Orders")
+    = content_tag(:div, nil, class: "col align-self-end") do
+      = form_tag(orders_path, method: :get, class: "align-self-end") do
+        = text_field_tag("q[search_query]", params.dig(:q, :search_query), class: "form-control", placeholder: "Search orders")
+    = content_tag(:div, class: "row py-2") do
+      = content_tag(:div, class: "col") do
+        = link_to new_order_path do
+          = ion_icon "plus", text: "Add new order"
+    = content_tag(:table, class: "table table-bordered table-hover") do
+      = content_tag(:thead) do
+        = content_tag(:tr) do
+          = content_tag(:th, scope: "col") do
+            = sort_link(@q, :order_number)
+          = content_tag(:th, scope: "col") do
+            = sort_link(@q, :status)
+          = content_tag(:th, scope: "col") do
+            = sort_link(@q, :created_at)
+          = content_tag(:th, scope: "col") do
+            = sort_link(@q, :updated_at)
+          = content_tag(:th, scope: "col") do
+            = "Actions"
+      = content_tag(:tbody) do
+        = render(partial: "order", collection: @orders)
+  = content_tag(:div, class: "d-flex justify-content-center") do
+    != pagy_nav(@pagy)

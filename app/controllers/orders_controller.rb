@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
 
     def ransack_params
       (params[:q] || {}).merge(
-        { order_number_cont: params.dig(:q, :search_query).to_s }
+        { order_number_or_status_cont: params.dig(:q, :search_query).to_s }
       )
     end
 end

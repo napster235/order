@@ -5,4 +5,8 @@ class Order < ApplicationRecord
   belongs_to :user
 
   enum status: { delivered: 0, pending: 1 }
+
+  ransacker :status do
+    Arel.sql("CAST(status AS TEXT)")
+  end
 end

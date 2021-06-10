@@ -1,4 +1,4 @@
-<div class="jumbotron">  
+<%= content_tag(:div, class: "jumbotron") do %>  
   <% if current_user.blank? %>
     <% redirect_if_not_logged %>
   <% else %>
@@ -8,7 +8,7 @@
       <% end -%>
     <% end -%>
 
-    <%= content_tag(:div, nil, class: "col align-self-end") do %>
+    <%= content_tag(:div, class: "col align-self-end") do %>
       <%= form_tag(orders_path, method: :get, class: "align-self-end") do %>
         <%= text_field_tag("q[search_query]", params.dig(:q, :search_query), class: "form-control", placeholder: "Search orders") %>
       <% end -%>
@@ -55,6 +55,6 @@
   <% end -%>
 
   <%= content_tag(:div, class: "d-flex justify-content-center") do %>
-    <%== pagy_bootstrap_nav(@pagy) %>
+    <%== pagy_nav(@pagy) %>
   <% end -%>
-</div>
+<% end %>

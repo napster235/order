@@ -7,7 +7,7 @@ RSpec.describe "Orders", type: :request do
     sign_in user
   end
 
-  describe "index" do
+  describe "#index" do
     let(:url) { orders_path }
     let!(:orders) { FactoryBot.create_list(:order, 5) }
 
@@ -26,6 +26,7 @@ RSpec.describe "Orders", type: :request do
 
     context "a call to filter order records" do
       let(:params) { { q: { search_query: Order.first.order_number } } }
+
       subject { get url, params: params }
 
       it "responds with a status of ok (200)" do
@@ -34,12 +35,13 @@ RSpec.describe "Orders", type: :request do
 
       it "returns a list of gl accounts based on the filter" do
         subject
+        
         expect(assigns(:orders).size).to eql(1)
       end
     end
   end
 
-  describe "new" do
+  describe "#new" do
     let(:url) { new_order_path }
 
     subject { get url }
@@ -51,13 +53,13 @@ RSpec.describe "Orders", type: :request do
 
       it "loads the new record" do
         subject
-
+        
         expect(assigns(:order).new_record?).to eql(true)
       end
     end
   end
 
-  describe "create" do
+  describe "#create" do
     let(:url) { orders_path }
     let(:params) { { order: FactoryBot.attributes_for(:order) } }
 
@@ -101,6 +103,7 @@ RSpec.describe "Orders", type: :request do
   describe "#edit" do
     let!(:orders) { FactoryBot.create(:order) }
     let(:url) { edit_order_path(id: orders.id) }
+
     subject { get url }
 
     context "a call to show the edit form for an existing order" do
@@ -117,6 +120,7 @@ RSpec.describe "Orders", type: :request do
 
     context "a call to show the edit form for an inexisting order" do
       let(:url) { edit_order_path(id: 0) }
+
       subject { get url }
 
       it "responds with a status of redirect (302)" do
@@ -129,6 +133,7 @@ RSpec.describe "Orders", type: :request do
     let(:url) { order_path(id: order.id) }
     let(:updated_order_number) { "Order_updated" }
     let(:order) { FactoryBot.create(:order) }
+
     subject { put url, params: { order: { order_number: updated_order_number } } }
 
     context "a call to update an order" do

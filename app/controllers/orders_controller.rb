@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
 
   def index
     @q = Order.ransack(ransack_params)
-    @orders = @q.result.order("status ASC")
-    @pagy, @orders = pagy(Order.all.ransack(ransack_params).result, items: 10)
+    # @orders = @q.result.order("status ASC")
+    @pagy, @orders = pagy(Order.all.ransack(ransack_params).result.order("status DESC"), items: 10)
   end
 
   def new

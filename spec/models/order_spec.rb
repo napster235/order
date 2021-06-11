@@ -57,7 +57,7 @@ RSpec.describe Order, type: :model do
       let(:order_number) { "Ord" }
       let(:order) { FactoryBot.build(:order, order_number: order_number) }
 
-      it "doesn not create the record" do
+      it "does not create the record" do
         expect { subject }.not_to change { Order.count }
       end
 

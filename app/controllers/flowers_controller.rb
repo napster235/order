@@ -1,8 +1,12 @@
 class FlowersController < ApplicationController
+  include Pagy::Backend
+  
   before_action :load_record, only: [:edit, :update, :destroy]
 
   def index
-    @flowers = Flower.all
+    @q = Flower.ransack(ransack_params)
+    @flowers = @q.result.order("status ASC")
+    @pagy, @flowers = pagy(Flower.all.ransack(ransack_params).result, items: 10)
   end
 
   def new
@@ -51,5 +55,11 @@ class FlowersController < ApplicationController
     def load_record
       @flower = Flower.where(id: params[:id]).first
       redirect_to flowers_url if @flower.blank?
+    end
+
+    def ransack_params
+      (params[:q] || {}).merge(
+        { name_or_price_cont: params.dig(:q, :search_query).to_s }
+      )
     end
 end

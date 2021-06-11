@@ -1,4 +1,4 @@
-namespace :orders do
+namespace :data do
   desc "populate order list"
   task orders: :environment do
 

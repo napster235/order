@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Flowers", type: :request do
   let!(:user) { FactoryBot.create(:user) }
@@ -172,7 +172,7 @@ RSpec.describe "Flowers", type: :request do
       end
 
       it "deletes the record" do
-        expect { subject }.to change { Flower.count}.by(-1)
+        expect { subject }.to change { Flower.count }.by(-1)
       end
 
       it "flashes a success message notification" do
@@ -203,36 +203,3 @@ RSpec.describe "Flowers", type: :request do
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

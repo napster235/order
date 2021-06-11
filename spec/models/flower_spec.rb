@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Flower, type: :model do
   let(:user) { FactoryBot.create(:user) }
@@ -64,32 +64,3 @@ RSpec.describe Flower, type: :model do
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

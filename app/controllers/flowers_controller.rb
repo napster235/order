@@ -1,6 +1,6 @@
 class FlowersController < ApplicationController
   include Pagy::Backend
-  
+
   before_action :load_record, only: [:edit, :update, :destroy]
 
   def index
@@ -48,18 +48,18 @@ class FlowersController < ApplicationController
 
     private
 
-    def flower_params
-      params.require(:flower).permit(:name, :price)
-    end
+      def flower_params
+        params.require(:flower).permit(:name, :price)
+      end
 
-    def load_record
-      @flower = Flower.where(id: params[:id]).first
-      redirect_to flowers_url if @flower.blank?
-    end
+      def load_record
+        @flower = Flower.where(id: params[:id]).first
+        redirect_to flowers_url if @flower.blank?
+      end
 
-    def ransack_params
-      (params[:q] || {}).merge(
-        { name_or_price_cont: params.dig(:q, :search_query).to_s }
-      )
-    end
+      def ransack_params
+        (params[:q] || {}).merge(
+          { name_or_price_cont: params.dig(:q, :search_query).to_s }
+        )
+      end
 end

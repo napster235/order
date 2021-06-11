@@ -31,6 +31,9 @@ gem 'devise'
 gem 'pagy', '~> 2.1.1'
 gem 'ransack'
 gem 'brakeman'
+gem "rubocop", "1.8.0"
+gem "rubocop-rails"
+gem "rubocop-rspec"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

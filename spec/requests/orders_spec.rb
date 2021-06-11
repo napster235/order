@@ -35,7 +35,7 @@ RSpec.describe "Orders", type: :request do
 
       it "returns a list of gl accounts based on the filter" do
         subject
-        
+
         expect(assigns(:orders).size).to eql(1)
       end
     end
@@ -53,7 +53,7 @@ RSpec.describe "Orders", type: :request do
 
       it "loads the new record" do
         subject
-        
+
         expect(assigns(:order).new_record?).to eql(true)
       end
     end

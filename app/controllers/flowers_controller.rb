@@ -5,7 +5,6 @@ class FlowersController < ApplicationController
 
   def index
     @q = Flower.ransack(ransack_params)
-    # @flowers = @q.result.order("price ASC")
     @pagy, @flowers = pagy(Flower.all.ransack(ransack_params).result.order("price ASC"), items: 10)
   end
 

@@ -5,8 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     @q = Order.ransack(ransack_params)
-    # @orders = @q.result.order("status ASC")
-    @pagy, @orders = pagy(Order.all.ransack(ransack_params).result.order("status DESC"), items: 10)
+    @pagy, @orders = pagy(Order.where(user_id: current_user.id).ransack(ransack_params).result.order("status DESC"), items: 10)
   end
 
   def new
@@ -49,7 +48,7 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      params.require(:order).permit(:order_number, :user_id, :status)
+      params.require(:order).permit(:order_number, :status).with_defaults(user_id: current_user.id)
     end
 
     def load_record

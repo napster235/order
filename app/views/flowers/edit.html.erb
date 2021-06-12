@@ -1,8 +1,10 @@
 <% if current_user.blank? %>
   <% redirect_if_not_logged %>
 <% else %>
-  <%= content_tag(:h2, "Edit flower") %>
-  <%= form_for(@flower, url: flower_path(@flower), method: :put) do |f| %>
-    <%= render(partial: "form", object: f) %>
+  <%= content_tag(:div, class: "container") do %>
+    <%= content_tag(:h2, "Edit flower") %>
+    <%= form_for(@flower, url: flower_path(@flower), method: :put) do |f| %>
+      <%= render(partial: "form", object: f) %>
+    <% end -%>
   <% end -%>
 <% end -%>

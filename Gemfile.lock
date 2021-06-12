@@ -131,7 +131,7 @@ GEM
     nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (2.1.5)
+    pagy (3.14.0)
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
@@ -304,7 +304,7 @@ DEPENDENCIES
   font-ionicons-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  pagy (~> 2.1.1)
+  pagy (~> 3.5)
   pg (~> 1.1)
   pry
   puma (~> 5.0)

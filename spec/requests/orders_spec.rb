@@ -9,7 +9,7 @@ RSpec.describe "Orders", type: :request do
 
   describe "#index" do
     let(:url) { orders_path }
-    let!(:orders) { FactoryBot.create_list(:order, 5) }
+    let!(:orders) { FactoryBot.create_list(:order, 5, user_id: user.id) }
 
     subject { get url }
 

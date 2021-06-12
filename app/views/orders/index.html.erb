@@ -55,6 +55,6 @@
   <% end -%>
 
   <%= content_tag(:div, class: "d-flex justify-content-center") do %>
-    <%== pagy_nav(@pagy) %>
+    <%== render partial: 'shared/bootstrap_nav', locals: {pagy: @pagy} %>
   <% end -%>
 <% end %>

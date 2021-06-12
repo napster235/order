@@ -28,7 +28,7 @@ gem 'font-ionicons-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
-gem 'pagy', '~> 2.1.1'
+gem 'pagy', '~> 3.5'
 gem 'ransack'
 gem 'brakeman'
 gem "rubocop", "1.8.0"

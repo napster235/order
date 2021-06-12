@@ -1,8 +1,10 @@
 <% if current_user.blank? %>
   <% redirect_if_not_logged %>
 <% else %>
-  <%= content_tag(:h2, "New order") %>
-  <%= form_for(@order, url: orders_path(), method: :post) do |f| %>
-    <%= render(partial: "form", object: f) %>
+  <%= content_tag(:div, class: "container") do %>
+    <%= content_tag(:h2, "New order") %>
+    <%= form_for(@order, url: orders_path(), method: :post) do |f| %>
+      <%= render(partial: "form", object: f) %>
+    <% end -%>
   <% end -%>
 <% end -%>

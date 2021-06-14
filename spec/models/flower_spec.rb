@@ -39,6 +39,14 @@ RSpec.describe Flower, type: :model do
       end
     end
 
+    context "when user_id is nil" do
+      let(:flower) { FactoryBot.build(:flower, user_id: nil) }
+
+      it "does not create record" do
+        expect { subject }.not_to change { Flower.count }
+      end
+    end
+
     context "when price is not integer" do
       let(:flower) { FactoryBot.build(:flower, price: "string") }
 

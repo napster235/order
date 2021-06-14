@@ -9,7 +9,7 @@ RSpec.describe "Flowers", type: :request do
 
   describe "#index" do
     let(:url) { flowers_path }
-    let!(:flowers) { FactoryBot.create_list(:flower, 5) }
+    let!(:flowers) { FactoryBot.create_list(:flower, 5, user_id: user.id) }
 
     subject { get url }
 

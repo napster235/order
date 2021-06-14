@@ -3,18 +3,22 @@ namespace :populate do
   task orders: :environment do
 
     puts "Populating orders table ..."
+
+    flower = FactoryBot.create(:flower, user_id: 1)
+
     [
-      { order_number: "Order_123", status: "pending", user_id: 1 },
-      { order_number: "Order_1234", status: "delivered", user_id: 1 },
-      { order_number: "Order_1235", status: "delivered", user_id: 1 },
-      { order_number: "Order_1243", status: "pending", user_id: 1 },
-      { order_number: "Order_1435", status: "pending", user_id: 1 },
-      { order_number: "Order_12323", status: "delivered", user_id: 1 },
-      { order_number: "Order_123789", status: "pending", user_id: 1 },
-      { order_number: "Order_123009", status: "pending", user_id: 1 },
-      { order_number: "Order_1098", status: "delivered", user_id: 1 }
+      { order_number: "Order_123", status: "pending", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_1234", status: "delivered", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_1235", status: "delivered", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_1243", status: "pending", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_1435", status: "pending", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_12323", status: "delivered", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_123789", status: "pending", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_123009", status: "pending", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_125089", status: "pending", user_id: 1, flower_ids: flower.id },
+      { order_number: "Order_1098", status: "delivered", user_id: 1, flower_ids: flower.id }
     ].each do |attributes|
-      Order.find_or_create_by(attributes)
+      Order.create(attributes)
     end
     puts "Finished!"
   end

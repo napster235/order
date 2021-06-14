@@ -4,6 +4,10 @@
   <% end -%>
 
   <%= content_tag(:td) do %>
+    <%= order.flowers.collect(&:name).join() %>
+  <% end -%>
+
+  <%= content_tag(:td) do %>
     <%= order.status if order.status %>
   <% end -%>
 

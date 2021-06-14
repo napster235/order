@@ -48,7 +48,7 @@ class FlowersController < ApplicationController
     private
 
       def flower_params
-        params.require(:flower).permit(:name, :price).with_defaults(user_id: current_user.id)
+        params.require(:flower).permit(:name, :price, order_ids: []).with_defaults(user_id: current_user.id)
       end
 
       def load_record

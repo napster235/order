@@ -76,6 +76,14 @@ RSpec.describe Order, type: :model do
       end
     end
 
+    context "when flower is nil" do
+      let(:order) { FactoryBot.build(:order, flower_ids: nil) }
+
+      it "does not create record" do
+        expect { subject }.not_to change { Order.count }
+      end
+    end
+
     context "when status is nil" do
       let(:order) { FactoryBot.build(:order, status: nil) }
 

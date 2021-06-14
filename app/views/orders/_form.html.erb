@@ -7,6 +7,13 @@
   <% end -%>
 
   <%= content_tag(:div, class: "form-group") do %>
+    <%= form.label(:flower, "Flower") %>
+    <%= form.collection_select(:flower_ids, Flower.all, :id, :name, { prompt: true }, class: "form-control" ) %>
+
+    <%= content_tag(:span, form.object.errors.full_messages_for(:flowers).join(".\n"), class: "text-danger") %>
+  <% end -%>
+
+  <%= content_tag(:div, class: "form-group") do %>
     <%= form.label(:status, "Status", class: "form-label") %>
     <%= form.collection_select(:status, Order.statuses.map { |a| [a.first, a.first] }, :first, :second, { include_blank: true }, { class: "custom-select" } ) %>
 

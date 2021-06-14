@@ -3,5 +3,6 @@ FactoryBot.define do
     order_number { "Order_#{Faker::Number.number(digits: 6)}".to_s }
     user_id { FactoryBot.create(:user).id }
     status { ["delivered", "pending"].sample }
+    flower_ids { FactoryBot.create(:flower).id }
   end
 end

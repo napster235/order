@@ -1,5 +1,3 @@
-require 'factory_bot'
-
 namespace :populate do
   desc "populate order list"
   task orders: :environment do

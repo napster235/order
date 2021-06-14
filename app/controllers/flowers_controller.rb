@@ -5,7 +5,7 @@ class FlowersController < ApplicationController
 
   def index
     @q = Flower.ransack(ransack_params)
-    @pagy, @flowers = pagy(Flower.all.ransack(ransack_params).result.order("price ASC"), items: 10)
+    @pagy, @flowers = pagy(Flower.where(user_id: current_user.id).ransack(ransack_params).result.order("price ASC"), items: 10)
   end
 
   def new
@@ -48,7 +48,7 @@ class FlowersController < ApplicationController
     private
 
       def flower_params
-        params.require(:flower).permit(:name, :price)
+        params.require(:flower).permit(:name, :price).with_defaults(user_id: current_user.id)
       end
 
       def load_record

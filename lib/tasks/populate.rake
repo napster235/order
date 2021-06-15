@@ -4,7 +4,7 @@ namespace :populate do
 
     puts "Populating orders table ..."
 
-    flower = FactoryBot.create(:flower, user_id: 1)
+    flower = Flower.find_or_create_by(name: "Rose", price: 12, user_id: 1)
 
     [
       { order_number: "Order_123", status: "pending", user_id: 1, flower_ids: flower.id },

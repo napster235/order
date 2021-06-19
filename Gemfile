@@ -44,6 +44,8 @@ group :development, :test do
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
   gem 'pry'
   gem 'rails-controller-testing'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
+  gem 'rack-livereload', '~> 0.3.17'
 end
 
 group :development do

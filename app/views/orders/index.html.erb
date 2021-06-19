@@ -50,10 +50,14 @@
           <% end -%>
         <% end -%>
       <% end -%>
-    
+
+      <%= turbo_stream_from "orders" %>
+
 
       <%= content_tag(:tbody) do %>
-        <%= render(partial: "order", collection: @orders) %>
+        <%= turbo_frame_tag "orders" do %>
+          <%= render(partial: "order", collection: @orders) %>
+        <% end -%>
       <% end -%>
     <% end -%>
   <% end -%>

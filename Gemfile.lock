@@ -128,6 +128,10 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     http_parser.rb (0.6.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -218,6 +222,7 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.3.1)
     regexp_parser (2.1.1)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -287,8 +292,12 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stimulus-rails (0.2.4)
+      rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
+    turbo-rails (0.5.11)
+      rails (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -333,6 +342,7 @@ DEPENDENCIES
   faker!
   font-ionicons-rails
   guard-livereload (~> 2.5, >= 2.5.2)
+  hotwire-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pagy (~> 3.5)
@@ -344,6 +354,7 @@ DEPENDENCIES
   rails (~> 6.1.3, >= 6.1.3.2)
   rails-controller-testing
   ransack
+  redis (~> 4.0)
   rspec
   rspec-rails (~> 5.0.1)
   rubocop (= 1.8.0)
@@ -352,6 +363,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  turbo-rails
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

@@ -53,8 +53,7 @@
 
       <%= turbo_stream_from "orders" %>
 
-
-      <%= content_tag(:tbody) do %>
+      <%= content_tag(:tbody, id: "orders") do %>
         <%= turbo_frame_tag "orders" do %>
           <%= render(partial: "order", collection: @orders) %>
         <% end -%>
@@ -65,4 +64,4 @@
   <%= content_tag(:div, class: "d-flex justify-content-center") do %>
     <%== render partial: 'shared/bootstrap_nav', locals: {pagy: @pagy} %>
   <% end -%>
-<% end %>
+<% end -%>

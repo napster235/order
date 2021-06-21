@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Order, type: :model do
   let!(:user) { FactoryBot.create(:user) }
@@ -53,8 +53,31 @@ RSpec.describe Order, type: :model do
       end
     end
 
+    context "when order_number is shorter than 6 chars" do
+      let(:order_number) { "Ord" }
+      let(:order) { FactoryBot.build(:order, order_number: order_number) }
+
+      it "does not create the record" do
+        expect { subject }.not_to change { Order.count }
+      end
+
+      it "returns error messages" do
+        subject
+
+        expect(order.errors.full_messages).to eql(["Order number is too short (minimum is 6 characters)"])
+      end
+    end
+
     context "when user_id is nil" do
       let(:order) { FactoryBot.build(:order, user_id: nil) }
+
+      it "does not create record" do
+        expect { subject }.not_to change { Order.count }
+      end
+    end
+
+    context "when flower is nil" do
+      let(:order) { FactoryBot.build(:order, flower_ids: nil) }
 
       it "does not create record" do
         expect { subject }.not_to change { Order.count }

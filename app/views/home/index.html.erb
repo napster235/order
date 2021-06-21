@@ -1,1 +1,6 @@
-<h1>Orders </h1>
+<% if current_user.blank? %>
+  <% redirect_if_not_logged %>
+<% else %>
+  <%= link_to("Check orders", orders_path, class: "btn btn-primary") %>
+  <%= link_to("Check flowers", flowers_path, class: "btn btn-primary") %>
+<% end %>

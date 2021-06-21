@@ -1,0 +1,20 @@
+<%= content_tag(:div, class: "col-md-6") do %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= form.label(:name, "Name") %>
+    <%= form.text_field(:name, class: "form-control") %>
+
+    <%= content_tag(:span, form.object.errors.full_messages_for(:name).join(".\n"), class: "text-danger") %>
+  <% end %>
+
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= form.label(:price, "Price") %>
+    <%= form.text_field(:price, class: "form-control") %>
+
+    <%= content_tag(:span, form.object.errors.full_messages_for(:price).join(".\n"), class: "text-danger") %>
+  <% end %>
+
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= form.submit("Save", data: { "disable-with" => "Saving..." }, class: "btn btn-primary") %>
+    <%= link_to("Cancel", flowers_path(), class: "btn btn-link") %>
+  <% end %>
+<% end %>
